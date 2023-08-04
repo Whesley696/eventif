@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Inscrições</h1>
+    <form action="." method="post">
+        {% csrf_token %}
+    <p>
+        <label for="id_nome">Nome:</label>
+        <input id="id_nome" type='text' name='name' maxlength="100"/>
+    </p>
+    <p>
+        <label for="id_cpf">CPF</label>
+        <input id="id_cpf" type='text' name='cpf' maxlength="11"/>
+    </p>
+    <p>
+        <label for="id_email">Email:</label>
+        <input id="id_email" type='email' name='email' maxlength="100"/>
+    </p>
+    <p>
+        <label for="id_phone">Telefone:</label>
+        <input id="id_phone" type='text' name='phone' maxlength="20"/>
+    </p>
+        <input" type='submit' value="enviar"/>
+    </form>
+</body>
+</html>
