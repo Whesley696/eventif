@@ -23,7 +23,7 @@ class SubscribeTest(TestCase):
     
     def test_csrf(self):
         """HTML must contain csrf"""
-        self.assertContains(self.response, 'csrf')
+        self.assertContains(self.response, 'csrfmiddlewaretoken')
 
     def test_has_form(self):
         """Context must have subscription form"""
