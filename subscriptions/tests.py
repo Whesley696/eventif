@@ -1,13 +1,14 @@
 from django.test import TestCase
 from subscriptions.forms import SubscriptionForm
 from django.core import mail
+
 class SubscribeTest(TestCase):
     def setUp(self):
         self.response = self.client.get('/inscricao/')
 
     def test_get(self):
         """GET /inscricao/ must return status_code 200"""
-        self.assertEqual(200,self.response.status_code)
+        self.assertEqual(200, self.response.status_code)
     
     def test_template(self):
         """Must use subscriptions/subscription_form.html"""
@@ -32,7 +33,7 @@ class SubscribeTest(TestCase):
 
     def test_form_has_fields(self):
         form = self.response.context['form']
-        self.assertSequenceEqual(['name','cpf','email','phone'], list(form.fields))
+        self.assertSequenceEqual(['name', 'cpf', 'email', 'phone'], list(form.fields))
 
 class SubscribeTestPost(TestCase):
     def setUp(self):
@@ -57,7 +58,7 @@ class SubscribeTestPost(TestCase):
     
     def test_subscription_email_to(self):
         email = mail.outbox[0]
-        expect = ['whesleysouza21@gmail.com', 'patrick.souza@aluno.riogrande.ifrs.edu.br']
+        expect = ['patricksouza@gmail.com', 'whesleysouza21@gmail.com']  # Atualize os endereços de e-mail aqui
         self.assertEqual(expect, email.to)
     
     def test_subscription_email_body(self):
@@ -66,3 +67,28 @@ class SubscribeTestPost(TestCase):
         self.assertIn('05474158245', email.body)
         self.assertIn('whesleysouza21@gmail.com', email.body)
         self.assertIn('53991140152', email.body)
+
+class SubscribeInvalidPost(TestCase):
+    def setUp(self):
+        self.response = self.client.post('/inscricao/', {})
+
+    def test_post(self):
+        self.assertEqual(200, self.response.status_code)
+
+    def test_template(self):
+        self.assertTemplateUsed(self.response, 'subscriptions/subscription_form.html')
+
+    def test_has_form(self):
+        form = self.response.context['form']
+        self.assertIsInstance(form, SubscriptionForm)
+
+    def test_form_has_error(self):
+        form = self.response.context['form']
+        self.assertTrue(form.errors)
+
+class SubscribeSucessMessage(TestCase):
+    def test_message(self):
+        data = dict(name='Whesley Souza', cpf='05474158245', email='whesleysouza21@gmail.com', phone='53991140152')
+
+        response = self.client.post("/inscricao/", data, follow=True)
+        self.assertContains(response, 'Inscrição realizada com sucesso')
