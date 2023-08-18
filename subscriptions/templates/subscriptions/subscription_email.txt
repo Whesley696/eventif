@@ -1,1 +1,4 @@
-
+Nome: {{name}}
+Cpf: {{cpf}}
+Email: {{email}}
+Phone: {{phone}}
