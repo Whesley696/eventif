@@ -17,8 +17,8 @@ class SubscribeTest(TestCase):
     def test_html(self):
         """HTML must contain input tags"""
         self.assertContains(self.response, "<form")
-        self.assertContains(self.response, "<input")
-        self.assertContains(self.response, 'type="text"')
+        self.assertContains(self.response, "<input", 6)
+        self.assertContains(self.response, 'type="text"',3)
         self.assertContains(self.response, 'type="email"')
         self.assertContains(self.response, 'type="submit"')
     
