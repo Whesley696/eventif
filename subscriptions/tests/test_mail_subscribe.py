@@ -13,11 +13,11 @@ class MailTest(TestCase):
         self.assertEqual(expect, self.email.subject)
 
     def test_subscription_email_sender(self):
-        expect = 'whesleysouza21@gmail.com'
+        expect = 'contato@eventif.com.br'
         self.assertEqual(expect, self.email.from_email)
     
     def test_subscription_email_to(self):
-        expect = ['whesleysouza21@gmail.com', 'whesleysouza21@gmail.com']  # Atualize os endereços de e-mail aqui
+        expect = ['contato@eventif.com.br', 'whesleysouza21@gmail.com']  # Atualize os endereços de e-mail aqui
         self.assertEqual(expect, self.email.to)
     
     def test_subscription_email_body(self):
