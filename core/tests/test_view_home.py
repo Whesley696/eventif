@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 # Create your tests here.
-class TesteHome(TestCase):
+class TestHome(TestCase):
     def setUp(self):
          self.response = self.client.get('/')
          
