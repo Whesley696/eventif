@@ -7,7 +7,7 @@ class ContactTests(TestCase):
     def setUp(self):
         self.valid_data = {
             'nome': 'Whesley Souza',
-            'email': 'whesleysouza21@gmail.com',
+            'email': 'whesley.souza@aluno.riogrande.ifrs.edu.br',
             'mensagem': 'TESTANDO',
         }
 
