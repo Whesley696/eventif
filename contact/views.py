@@ -27,7 +27,7 @@ def create(request):
     remetente = email  ;
     lista_destinatarios = ['contato@eventif.com.br', email]  
 
-    conteudo_email = render_to_string('contact/contact_email.txt', {  'nome': nome,'telefone': telefone,'email': email, 'mensagem': mensagem
+    conteudo_email = render_to_string('contact/contact_email.txt', {'name': nome,'phone': telefone,'email': email, 'message': mensagem
     })
 
     send_mail(assunto, conteudo_email, remetente, lista_destinatarios)
