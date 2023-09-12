@@ -6,4 +6,4 @@ class ContactFormTest(TestCase):
         self.form = ContactForm()
 
     def test_form_campo(self):
-        self.assertSequenceEqual(['nome', 'email', 'mensagem'], list(self.formulario.fields))
+        self.assertSequenceEqual(['nome',  'email', 'telefone', 'mensagem'], list(self.form.fields))
