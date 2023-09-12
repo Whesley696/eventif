@@ -17,10 +17,15 @@ def create(request):
 
     if not form.is_valid():
         return render(request, 'contact/contact_form.html', {'form': form})
+    assunto = 'Contato Feito!'
+    remetente = settings.DEFAULT_FROM_EMAIL
+    destinatario = form.cleaned_data['email']
+    template = 'contact/contact_email.txt'
+    dados_form = form.cleaned_data
+    _send_mail(assunto, remetente, destinatario, template, dados_form)
 
-    _send_mail('Contato Feito!', settings.DEFAULT_FROM_EMAIL, form.cleaned_data['email'], 'contact/contact_email.txt', form.cleaned_data)
-
-    messages.success(request, 'Mensagem enviada com sucesso')
+    messages.success(request, 'Mensagem enviada')
+    
 
     return HttpResponseRedirect('/contact/')
 
