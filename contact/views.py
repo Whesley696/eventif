@@ -23,10 +23,7 @@ def create(request):
     template = 'contact/contact_email.txt'
     dados_form = form.cleaned_data
     _send_mail(assunto, remetente, destinatario, template, dados_form)
-
     messages.success(request, 'Mensagem enviada')
-    
-
     return HttpResponseRedirect('/contact/')
 
 def new(request):
