@@ -6,6 +6,7 @@ from django.core import mail
 from django.template.loader import render_to_string
 from django.http import HttpResponse  # Import necessário
 from django.conf import settings
+from subscriptions.models import Subscription
 
 def subscribe(request):
     if request.method=='POST':
@@ -20,6 +21,8 @@ def create(request):
         
     _send_mail('Confirmação de inscrição', settings.DEFAULT_FROM_EMAIL, form.cleaned_data['email'], 'subscriptions/subscription_email.txt', form.cleaned_data)
     
+    Subscription.objects.create(**form.cleaned_data)
+
     messages.success(request, 'Inscrição realizada com sucesso')
     return HttpResponseRedirect('/inscricao/')  # Movido para dentro do bloco if
 
