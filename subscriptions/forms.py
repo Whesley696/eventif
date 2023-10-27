@@ -8,7 +8,7 @@ def validate_cpf(value):
 class SubscriptionForm(forms.Form):
     name = forms.CharField(label='Nome')
     cpf = forms.CharField(label='CPF', validators=[validate_cpf])
-    email = forms.EmailField()
+    email = forms.EmailField(required=False)
     phone = forms.CharField(label='Telefone')
 
     def clean_name(self):
@@ -16,4 +16,5 @@ class SubscriptionForm(forms.Form):
         words = [w.capitalize() for w in name.split()]
         return ' '.join(words)
 
-        #
+    def clean(self):
+        pass
